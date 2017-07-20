@@ -1,0 +1,25 @@
+AASR,Ahmed Abdal Shafi Rasel
+AFA,Adnan Ferdous Ashrafi
+AS,Aiasha Siddika
+HA,Sir Prof. Dr. Mohammad Hanif Ali
+IJM,Israt Jahan Mouri
+KMN,Dr. Kamruddin Md. Nur
+MAD,Mahfida Amjad Dipa
+MM,Maliha Mahbub
+MMI,Md. Manzurul Islam
+MSB,Dr. Mohammad Shaharia Bhuyan
+MSI,Md. Shahedul Islam
+NH,Nazia Hossain
+NP,Nahida Parvin
+NY,Nilufa Yeasmin
+RAS,Rayhan Ahmed Shimanto
+RZ,Rianon Zaman
+SSM,Shah S Mahin 
+SSS,Shifat Sharmin Shapla
+TA,Tanveer Ahmed
+TE,Tarikuzzaman Emon
+THN,Tamanna Hauqe Nipa
+TIR,Md. Towhidul Islam Robin
+TR,Tamjid Rahman
+ZA,Zonayed Ahmed
+ZI,Sir Dr. Zafar Iqbal Khan

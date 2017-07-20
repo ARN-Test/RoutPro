@@ -1,0 +1,109 @@
+COURSE_CODE,COURSE_TITLE,COURSE_SHORT
+ACCT 227,Accounting,ACC
+CSE 100,Course Viva I,CV.I
+CSE 113,Electrical Circuit & Devices,ECD
+CSE 123,Electronics,Elec.
+CSE 124,Electronics Sessional,Elec. Sess.
+CSE 133,Digital Logic Design,DLD
+CSE 134,Digital Logic Design Sessional,DLD Sess.
+CSE 200,Course Viva II,CV.II
+CSE 213,Digital Electronics & Pulse Technique,DEPT
+CSE 214,Digital Electronics & Pulse Technique Sessional,DEPT Sess.
+CSE 221,Electrical Devices,ED
+CSE 233,Computer Organization & Architecture,COA
+CSE 234,Computer Organization & Architecture Sessional,COA Sess.
+CSE 300,Course Viva III,CV.III
+CSE 317,Assembly Programming Sessional,AP Sess.
+CSE 325,Microprocessor,Micro.
+CSE 326,Microprocessor Sessional,Micro. Sess.
+CSE 327,Microprocessor & Interfacing,M&I
+CSE 328,Microprocessor and Interfacing sessional,M&I Sess.
+CSE 333,Computer Peripherals & Interfacing,CPI
+CSE 334,Computer Peripherals & Interfacing Sessional,CPI Sess.
+CSE 335,Data Communication,DC
+CSE 353,Switching and Routing,SR
+CSE 354,Switching and Routing Sessional,SR Sess.
+CSE 400,Course Viva IV,CV.IV
+CSE 415,Computer Networks,CN
+CSE 416,Computer Networks Sessional,CN Sess.
+CSE 429,Communication Eng.,CE
+CSE 431,VLSI Design,VLSID
+CSE 432,VLSI Design Sessional,VLSID Sess.
+CSE 433,Digital Signal Process,DSP
+CSE 500,Project & Thesis,P&T
+CSI 111,Computer Concepts,CC
+CSI 112,Computer Concept Sessional,CC Sess.
+CSI 115,Computer and Programming Concept,CPC
+CSI 116,Computer and Programming Concept Sessional,CPC Sess.
+CSI 121,Programming Language I,PL.I
+CSI 123,Structured Programming Language,SPL
+CSI 124,Structured Programming Language Sessional,SPL Sess.
+CSI 131,Programming Language II,PL.II
+CSI 211,Object Oriented Programming I,OOPI
+CSI 217,Object Oriented Programming,OOP
+CSI 218,Object Oriented Programming Sessional,OOP Sess.
+CSI 221,Data Structure,DS
+CSI 222,Data Structure Sessional,DS Sess.
+CSI 223,Database Management System,DMS
+CSI 224,Database Management System Sessional,DMS Sess.
+CSI 231,Algorithms,Algo.
+CSI 232,Algorithms Sessional,Algo. Sess.
+CSI 233,Advanced Programming,AP
+CSI 234,Advance Programming Sessional,AP Sess.
+CSI 311,Visual & Internet Programming,VIP
+CSI 312,Visual & Internet Programming Sessional,VIP Sess.
+CSI 313,Operating System,OS
+CSI 314,Operating System Sessional,OS Sess.
+CSI 315,Theory of Computing,TC
+CSI 321,Object Oriented Programming II,OOPII
+CSI 322,Object Oriented Programming Sessional,OOP Sess.
+CSI 323,System Analysis & Design,SAD
+CSI 324,System Analysis & Design Sessional,SAD Sess.
+CSI 331,Software Engineering,SE
+CSI 332,Software Engineering Sessional,SE Sess.
+CSI 411,Compiler,Compiler
+CSI 412,Compiler Sessional,Comp Sess.
+CSI 413,Computer Graphics,CG
+CSI 414,Computer Graphics Sessional,CGS
+CSI 417,Simulation & Modeling,SM
+CSI 418,Simulation & Modeling Sessional,SM Sess.
+CSI 421,Artificial Intelligence & Expert Systems,AI ES
+CSI 422,Artificial Intelligence & Expert Systems Sessional,AI ES Sess.
+CSI 423,Multimedia Systems Design,MSD
+CSI 424,Multimedia Systems Design Sessional,MSD Sess.
+CSI 425,Pattern Recognition,P.Recognition
+CSI 426,Pattern Recognition Sessional,PRS
+CSI 427,Graph Theory,GT
+CSI 428,Graph Theory Sessional,GT Sess.
+CSI 431,Artificial Intelligence,AI
+CSI 432,Artificial Intelligence Sessional,AI Sess.
+CSI 439,Information System Management,ISM
+ECON 127,Economics,Econ.
+ECON 317,Principles of Economics,PE
+ECON 319,Economics,Econ.
+EEE 193,Electrical Circuit and Devices,ECD
+EEE 195,Electronics,Elec.
+EEE 196,Electronics Sessional,Elec.Sess.
+ENG 137,Technical Writing And Communication,TWC
+ENGL 100,English Fundamentals,EF
+ENGL 101,Composition,Compo.
+ENGL 102,Public Speaking,PS
+MATH 113,Differential & Integral Calculus,DIC
+MATH 115,Differential Calculus,D.Calculus
+MATH 125,Integral Calculus,I.Calculus
+MATH 135,Discrete Mathematics,DM
+MATH 215,"Matrix, Vector & Statistics",MVS
+MATH 225,Coordinate Geometry & Vector Calculus,CGVC
+MATH 231,Differential Equations,D.Equations
+MATH 235,Ordinary & Partial Differential Equation,OPDE
+MATH 237,Matrix & Differential Equation,MDE
+MATH 319,Fourier Analysis & Laplace Transformation,FALT
+MATH 327,Numerical Methods,NM
+MATH 337,Mathematical Analysis for Computer Science,MAC
+ORE 101,Freshman Orientation,F.Orientation
+ORE 102,Continuous Orientation,C.Orientation
+ORE 103,Professional Orientation,P.Orientation
+PHY 217,Physics,Physics
+SOC 113,Bangladesh Studies,B.Studies
+,,
+,,

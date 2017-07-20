@@ -1,0 +1,9 @@
+* JDK 1.8 - Java RE 8
+* iText [Dev]
+* OJDBC 14 / 6
+* Oracle Database 11g Exprexx Edition
+
+* NetBeans
+* GitHub
+* NPP
+* 
