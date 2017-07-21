@@ -1,72 +1,59 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package MainPackage;
 
-/**
- *
- * @author A.R. Nobel
- */
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.*;
-//import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.AreaReference;
-import org.apache.poi.ss.util.CellReference;
-//import org.apache.poi.xssf.usermodel.XSSFCell;
-//import org.apache.poi.xssf.usermodel.XSSFRow;
+import  java.io.*;  
+import  java.sql.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFTable;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTable;
-import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTableColumn;
-import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTableColumns;
-import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTableStyleInfo;
 
-class insertTable
-{
-  public static void main(String[] args)
-    throws FileNotFoundException, IOException
-  {
-   /* Read the input file that contains the data to be converted to table */
-   FileInputStream input_document = new FileInputStream(new File(System.getProperty("user.dir")+"\\Test\\data.xls"));    
-   /* Create Workbook */
-   XSSFWorkbook my_xlsx_workbook = new XSSFWorkbook(input_document); 
-   /* Read worksheet */
-   XSSFSheet sheet = my_xlsx_workbook.getSheetAt(0); 
-   /* Create Table into Existing Worksheet */
-   XSSFTable my_table = sheet.createTable();    
-   /* get CTTable object*/
-   CTTable cttable = my_table.getCTTable();
-   /* Define Styles */    
-   CTTableStyleInfo table_style = cttable.addNewTableStyleInfo();
-   table_style.setName("TableStyleMedium9");           
-   /* Define Style Options */
-   table_style.setShowColumnStripes(false); //showColumnStripes=0
-   table_style.setShowRowStripes(true); //showRowStripes=1    
-   /* Define the data range including headers */
-   AreaReference my_data_range = new AreaReference(new CellReference(0, 0), new CellReference(5, 2));    
-   /* Set Range to the Table */
-   cttable.setRef(my_data_range.formatAsString());
-   cttable.setDisplayName("MYTABLE");      /* this is the display name of the table */
-   cttable.setName("Test");    /* This maps to "displayName" attribute in &lt;table&gt;, OOXML */            
-   cttable.setId(1L); //id attribute against table as long value
-   /* Add header columns */               
-   CTTableColumns columns = cttable.addNewTableColumns();
-   columns.setCount(3L); //define number of columns
-   /* Define Header Information for the Table */
-    for (int i = 0; i < 3; i++)
-    {
-    CTTableColumn column = columns.addNewTableColumn();   
-    column.setName("Column" + i);      
-        column.setId(i+1);
-    }   
-    /* Write output as File */
-    FileOutputStream fileOut = new FileOutputStream("Excel_Format_As_Table.xlsx");
-    my_xlsx_workbook.write(fileOut);
-    fileOut.close();
-  }
-  
+public class IOTest2 {
+        public static void main(String[]args){
+        try{
+            String filename=System.getProperty("user.dir")+"\\Test\\data.xlsx"; //"cd\\test\\data.xls" ;
+            XSSFWorkbook wb=new XSSFWorkbook();
+            XSSFSheet sheet =  wb.createSheet("Test Sheet");
+            
+            
+
+            XSSFRow rowhead = sheet.createRow((short)0);
+            rowhead.createCell((short) 0).setCellValue("ROOM_NO");
+            rowhead.createCell((short) 1).setCellValue("TEACHER_CODE");
+            rowhead.createCell((short) 2).setCellValue("TRIMISTER");
+            rowhead.createCell((short) 3).setCellValue("DAY");
+            rowhead.createCell((short) 4).setCellValue("COURSE_SHORT");
+            
+            /*            // Aqua background
+            CellStyle style = wb.createCellStyle();
+            style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+            //style.setFillPattern(CellStyle.BIG_SPOTS);
+            rowhead.createCell((short) 0).setCellStyle(style);
+            rowhead.createCell((short) 1).setCellStyle(style);
+            rowhead.createCell((short) 2).setCellStyle(style);
+            rowhead.createCell((short) 3).setCellStyle(style);
+            rowhead.createCell((short) 4).setCellStyle(style);*/
+
+            Statement ST = Main.CON.createStatement();
+            ResultSet RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN TEACHER_LIST NATURAL JOIN ROOM_LIST");
+            int i = 1;
+            while(RS.next()){
+            XSSFRow row=   sheet.createRow((short)i);
+            row.createCell((short) 0).setCellValue((RS.getString("ROOM_NO")));
+            row.createCell((short) 1).setCellValue(RS.getString("TEACHER_CODE"));
+            row.createCell((short) 2).setCellValue(RS.getString("TRIMISTER"));
+            row.createCell((short) 3).setCellValue((RS.getString("DAY")));
+            row.createCell((short) 4).setCellValue(RS.getString("COURSE_SHORT"));
+            i++;
+            }
+            FileOutputStream FileOutput =  new FileOutputStream(filename);
+            wb.write(FileOutput);
+            FileOutput.close();
+            System.out.println("Your excel file has been generated!");
+
+        } 
+        catch ( Exception e ) 
+        {
+            System.out.println(e);
+        }
+    }
 }

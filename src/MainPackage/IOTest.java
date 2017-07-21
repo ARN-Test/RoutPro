@@ -26,7 +26,7 @@ class TestExcelFile{
             rowhead.createCell((short) 3).setCellValue("DAY");
             rowhead.createCell((short) 4).setCellValue("COURSE_SHORT");
             
-            // Aqua background
+            /*            // Aqua background
             CellStyle style = hwb.createCellStyle();
             style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
             //style.setFillPattern(CellStyle.BIG_SPOTS);
@@ -34,7 +34,7 @@ class TestExcelFile{
             rowhead.createCell((short) 1).setCellStyle(style);
             rowhead.createCell((short) 2).setCellStyle(style);
             rowhead.createCell((short) 3).setCellStyle(style);
-            rowhead.createCell((short) 4).setCellStyle(style);
+            rowhead.createCell((short) 4).setCellStyle(style);*/
 
             Statement ST = Main.CON.createStatement();
             ResultSet RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN TEACHER_LIST NATURAL JOIN ROOM_LIST");
