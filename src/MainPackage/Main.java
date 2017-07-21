@@ -13,6 +13,9 @@ public class Main {
     //main - function
     public static void main(String[] args)
     {
+        TestInterface TI = new TestInterface();//
+        TI.setVisible(true);//
+        
         try{
         Statement ST = CON.createStatement();
         ResultSet RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN TEACHER_LIST NATURAL JOIN ROOM_LIST");
