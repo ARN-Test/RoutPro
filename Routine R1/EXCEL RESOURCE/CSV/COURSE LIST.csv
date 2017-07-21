@@ -61,7 +61,7 @@ CSI 323,System Analysis & Design,SAD
 CSI 324,System Analysis & Design Sessional,SAD Sess.
 CSI 331,Software Engineering,SE
 CSI 332,Software Engineering Sessional,SE Sess.
-CSI 411,Compiler,Compiler
+CSI 411,Compiler,Comp
 CSI 412,Compiler Sessional,Comp Sess.
 CSI 413,Computer Graphics,CG
 CSI 414,Computer Graphics Sessional,CGS
@@ -105,5 +105,3 @@ ORE 102,Continuous Orientation,C.Orientation
 ORE 103,Professional Orientation,P.Orientation
 PHY 217,Physics,Physics
 SOC 113,Bangladesh Studies,B.Studies
-,,
-,,
