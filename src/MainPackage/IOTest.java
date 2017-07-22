@@ -7,6 +7,8 @@ import  org.apache.poi.hssf.usermodel.HSSFSheet;
 import  org.apache.poi.hssf.usermodel.HSSFWorkbook; 
 import  org.apache.poi.hssf.usermodel.HSSFRow;
 //import  org.apache.poi.hssf.usermodel.HSSFCell;  
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 class TestExcelFile{
     public static void main(String[]args){
@@ -14,13 +16,25 @@ class TestExcelFile{
             String filename=System.getProperty("user.dir")+"\\Test\\data.xls"; //"cd\\test\\data.xls" ;
             HSSFWorkbook hwb=new HSSFWorkbook();
             HSSFSheet sheet =  hwb.createSheet("Test Sheet");
+            
+            
 
-            HSSFRow rowhead=   sheet.createRow((short)0);
+            HSSFRow rowhead = sheet.createRow((short)0);
             rowhead.createCell((short) 0).setCellValue("ROOM_NO");
             rowhead.createCell((short) 1).setCellValue("TEACHER_CODE");
             rowhead.createCell((short) 2).setCellValue("TRIMISTER");
             rowhead.createCell((short) 3).setCellValue("DAY");
             rowhead.createCell((short) 4).setCellValue("COURSE_SHORT");
+            
+            /*            // Aqua background
+            CellStyle style = hwb.createCellStyle();
+            style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+            //style.setFillPattern(CellStyle.BIG_SPOTS);
+            rowhead.createCell((short) 0).setCellStyle(style);
+            rowhead.createCell((short) 1).setCellStyle(style);
+            rowhead.createCell((short) 2).setCellStyle(style);
+            rowhead.createCell((short) 3).setCellStyle(style);
+            rowhead.createCell((short) 4).setCellStyle(style);*/
 
             Statement ST = Main.CON.createStatement();
             ResultSet RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN TEACHER_LIST NATURAL JOIN ROOM_LIST");
