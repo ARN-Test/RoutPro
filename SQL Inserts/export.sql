@@ -1,0 +1,62 @@
+--------------------------------------------------------
+--  File created - Saturday-July-22-2017   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table TEACHER_LIST
+--------------------------------------------------------
+
+  CREATE TABLE "RTEST"."TEACHER_LIST" 
+   (	"TEACHER_NAME" VARCHAR2(50 BYTE), 
+	"TEACHER_CODE" VARCHAR2(10 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+REM INSERTING into RTEST.TEACHER_LIST
+SET DEFINE OFF;
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Ahmed Abdal Shafi Rasel','AASR');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Adnan Ferdous Ashrafi','AFA');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Aiasha Siddika','AS');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Prof. Dr. Mohammad Hanif Ali','HA Sir');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Israt Jahan Mouri','IJM');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Dr. Kamruddin Md. Nur','KMN');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Mahfida Amjad Dipa','MAD');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Maliha Mahbub','MM');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Md. Manzurul Islam','MMI');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Dr. Mohammad Shaharia Bhuyan','MSB');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Md. Shahedul Islam','MSI');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Nazia Hossain','NH');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Nahida Parvin','NP');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Nilufa Yeasmin','NY');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Rayhan Ahmed Shimanto','RAS');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Rianon Zaman','RZ');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Shah S Mahin','SSM');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Shifat Sharmin Shapla','SSS');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Tanveer Ahmed','TA');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Tarikuzzaman Emon','TE');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Tamanna Hauqe Nipa','THN');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Md. Towhidul Islam Robin','TIR');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Tarin Kazi','TK');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Tamjid Rahman','TR');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Zonayed Ahmed','ZA');
+Insert into RTEST.TEACHER_LIST (TEACHER_NAME,TEACHER_CODE) values ('Dr. Zafar Iqbal Khan','ZI Sir');
+--------------------------------------------------------
+--  DDL for Index SYS_C007452
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "RTEST"."SYS_C007452" ON "RTEST"."TEACHER_LIST" ("TEACHER_CODE") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  Constraints for Table TEACHER_LIST
+--------------------------------------------------------
+
+  ALTER TABLE "RTEST"."TEACHER_LIST" ADD PRIMARY KEY ("TEACHER_CODE")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "RTEST"."TEACHER_LIST" MODIFY ("TEACHER_NAME" NOT NULL ENABLE);
