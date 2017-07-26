@@ -1,9 +1,16 @@
 package AccessPackage;
 
-import MainPackage.Connect;
+//import MainPackage.Connect;
+//import com.healthmarketscience.jackcess.Database;
+//import com.healthmarketscience.jackcess.Database.FileFormat;
+//import com.healthmarketscience.jackcess.DatabaseBuilder;
+//import java.io.File;
+//import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+//import java.sql.ResultSet;
+//import java.sql.Statement;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 
 
@@ -14,7 +21,14 @@ public class AMain {
     
     public static void main(String args[])
     {
-           try{
+        /*String DBPath = System.getProperty("user.dir")+"/newDb.accdb";
+        try {
+            Database DB = DatabaseBuilder.create(FileFormat.V2007, new File(DBPath));
+        } catch (IOException ex) {
+            Logger.getLogger(AMain.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        ////////////////////////////////////////////////////////////////////////InitializeAccess.Create_Tables();
+           /*try{
         Statement ST = ACON.createStatement();
         ResultSet RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN FACULTY_LIST");
 //        ResultSetMetaData RSMD = RS.getMetaData();
@@ -50,6 +64,6 @@ public class AMain {
         catch(Exception e)
         {
             e.printStackTrace();
-        }
+        }*/
     }
 }

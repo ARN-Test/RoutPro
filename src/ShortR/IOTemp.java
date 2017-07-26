@@ -15,6 +15,46 @@ import javax.swing.table.TableModel;
  */
 public class IOTemp {
     
+    //Database db = DatabaseBuilder.create(FileFormat.V2010, new File(dbPath))
+    //String dbPath = "C:/Users/Public/newDb.accdb";
+    
+    /// rs = connChem.getMetaData().getTables(null, null, "%", null); while (rs.next()) { String id = rs.getString(3); }
+    ///// FILES LIST
+    
+    
+    /* DatabaseMetaData dmd = conn.getMetaData();
+    try (ResultSet rs = dmd.getTables(null, null, "Clients", new String[] { "TABLE" })) {
+        if (rs.next()) {
+            System.out.println("Table [Clients] already exists.");
+        } else {
+            System.out.println("Table [Clients] does not exist.");
+            try (Statement s = conn.createStatement()) {
+                s.executeUpdate("CREATE TABLE Clients (ID COUNTER PRIMARY KEY, LastName TEXT(100))");
+                System.out.println("Table [Clients] created.");
+            }
+        }
+    }*/
+    
+    
+   // File dir = new File(directory);
+
+//File[] matches = dir.listFiles(new FilenameFilter()
+/*{
+  public boolean accept(File dir, String name)
+  {
+     return name.startsWith("temp") && name.endsWith(".txt");
+  }
+});*/
+    
+                /*if (FILES[i].isFile()) {
+            //System.out.println("File " + listOfFiles[i].getName());
+            
+            } 
+            else if (listOfFiles[i].isDirectory()) 
+            {
+            //System.out.println("Directory " + listOfFiles[i].getName());
+            }*/
+    
     ///////////////// EXCEL P1
 public void toExcel(JTable table, File file){
     try{

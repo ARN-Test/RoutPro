@@ -9,7 +9,7 @@ public class AConnect {
     try{
            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
           // connect using Thin driver
-          Connection connect = DriverManager.getConnection("jdbc:ucanaccess://"+System.getProperty("user.dir")+"//AccessDatabase//ARTest.accdb;memory=true");
+          Connection connect = DriverManager.getConnection("jdbc:ucanaccess://"+System.getProperty("user.dir")+"//AccessDatabase//ARTestS.accdb;memory=true");
 ////////  System.out.println("Connection Successful.");
           return connect;
        }
