@@ -6,6 +6,7 @@ package AccessPackage;
 //import com.healthmarketscience.jackcess.DatabaseBuilder;
 //import java.io.File;
 //import java.io.IOException;
+import static AccessPackage.InitializeAccess.Create_Tables;
 import java.sql.Connection;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
@@ -21,12 +22,18 @@ public class AMain {
     
     public static void main(String args[])
     {
-        /*String DBPath = System.getProperty("user.dir")+"/newDb.accdb";
-        try {
-            Database DB = DatabaseBuilder.create(FileFormat.V2007, new File(DBPath));
-        } catch (IOException ex) {
-            Logger.getLogger(AMain.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        //CREATE FILE TEST
+        
+
+        
+        Create_Tables();
+    }
+}
+
+
+//////////////// ************** EXTRAS THAT WAS IN AMAIN **************/////////////////
+
+        /**/
         ////////////////////////////////////////////////////////////////////////InitializeAccess.Create_Tables();
            /*try{
         Statement ST = ACON.createStatement();
@@ -65,5 +72,3 @@ public class AMain {
         {
             e.printStackTrace();
         }*/
-    }
-}

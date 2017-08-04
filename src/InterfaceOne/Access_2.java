@@ -1,10 +1,12 @@
 package InterfaceOne;
 
 
-import static AccessPackage.AMain.ACON;
+import static InterfaceOne.Base_1.ACON_2;
+import ItextPDF.PDFV1;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,26 +17,25 @@ public class Access_2 extends javax.swing.JFrame {
 
     /**
      * Creates new form AC_2
-     * @param Database
      */
-    public Access_2(String Database) {
+    public Access_2() {
         initComponents();
         Initialize();
     }
     
     private void Initialize(){
 
-        setSize(800,500);
+        setSize(800,700);
         setResizable(false);
         setDefaultCloseOperation(Base_1.DISPOSE_ON_CLOSE);
         
         //Faculty List +
         try{
-        Statement ST = ACON.createStatement();
-        ResultSet RS = ST.executeQuery("SELECT TEACHER_NAME FROM FACULTY_LIST");
+        Statement ST = ACON_2.createStatement();
+        ResultSet RS = ST.executeQuery("SELECT MEMBER_NAME FROM FACULTY_LIST");
             while(RS.next())
             {
-                FacultyList.addItem(RS.getString("TEACHER_NAME"));
+                FacultyList.addItem(RS.getString("MEMBER_NAME"));
             }
         RS = ST.executeQuery("SELECT BATCH FROM BATCH_LIST");
             while(RS.next())
@@ -57,40 +58,445 @@ public class Access_2 extends javax.swing.JFrame {
     private void tabInit(String TableName,String Caller)
     {
         try{
-        Statement ST = ACON.createStatement();
+        Statement ST = ACON_2.createStatement();
         ResultSet RS = null;
         
         if(Caller.equals("Faculty"))
-            RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN FACULTY_LIST NATURAL JOIN ROOM_LIST WHERE TEACHER_NAME ='"+TableName+"'");;
+            RS = ST.executeQuery("SELECT DAY,BATCH,MEMBER_CODE,COURSE_CODE,COURSE_SHORT,ROOM_NO,ATTRIBUTE,START_TIME,END_TIME,START_TIME,END_TIME,MEMBER_NAME FROM CLASS_ROUTINE NATURAL JOIN FACULTY_LIST NATURAL JOIN ROOM_LIST NATURAL JOIN TIME_SLOTS WHERE MEMBER_NAME ='"+TableName+"'");;
         if(Caller.equals("Batch"))
-            RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN FACULTY_LIST NATURAL JOIN ROOM_LIST WHERE BATCH ='"+TableName+"'");;
+            RS = ST.executeQuery("SELECT DAY,BATCH,MEMBER_CODE,COURSE_CODE,COURSE_SHORT,ROOM_NO,ATTRIBUTE,START_TIME,END_TIME,START_TIME,END_TIME FROM CLASS_ROUTINE NATURAL JOIN FACULTY_LIST NATURAL JOIN ROOM_LIST NATURAL JOIN TIME_SLOTS WHERE BATCH ='"+TableName+"'");;
         if(Caller.equals("Day"))
-            RS = ST.executeQuery("SELECT * FROM CLASS_LIST NATURAL JOIN FACULTY_LIST NATURAL JOIN ROOM_LIST WHERE DAY ='"+TableName+"'");
-        ResultSetMetaData RSMD = RS.getMetaData();
-        int COL = RSMD.getColumnCount();
+            RS = ST.executeQuery("SELECT * FROM CLASS_ROUTINE NATURAL JOIN FACULTY_LIST NATURAL JOIN ROOM_LIST WHERE DAY ='"+TableName+"'");
+        
+////////        ResultSetMetaData RSMD = RS.getMetaData();
+////////        int COL = RSMD.getColumnCount();
         DefaultTableModel TM = new DefaultTableModel();
         
-        for(int i = 1; i <= COL; i++)
-        {
-            TM.addColumn(RSMD.getColumnName(i));
-        }
+////////        for(int i = 1; i <= COL; i++)
+////////        {
+////////            TM.addColumn(RSMD.getColumnName(i));
+////////        }
+        
+        TM.addColumn("Day/\nTime");
+        TM.addColumn("8:00-9:15");
+        TM.addColumn("9:15-10:30");
+        TM.addColumn("10:30-11:45");
+        TM.addColumn("11:45-1:00");
+        TM.addColumn("1:00-2:15");
+        TM.addColumn("2:15-3:30");
+        TM.addColumn("3:30-4:45");
+        TM.addColumn("4:45-6:00");
+        TM.addColumn("6:00-9:00");
+        
         if(Caller.equals("Faculty"))
             FacultyRoutine.setModel(TM);
         if(Caller.equals("Batch"))
             BatchRoutine.setModel(TM);
         if(Caller.equals("Day"))
             DayRoutine.setModel(TM);
+        
+        FacultyRoutine.setRowHeight(75);
+        BatchRoutine.setRowHeight(75);
+        DayRoutine.setRowHeight(75);
+        
+        TM.addRow(new Object[]{"Saturday"});
+        TM.addRow(new Object[]{"Sunday"});
+        TM.addRow(new Object[]{"Monday"});
+        TM.addRow(new Object[]{"Tuesday"});
+        TM.addRow(new Object[]{"Wednesday"});
+        TM.addRow(new Object[]{"Thursday"});
+        TM.addRow(new Object[]{"Friday"});
+
+        
         while(RS.next()) {
-        TM.addRow(new Object[] {   RS.getString(1) 
-                        , RS.getString(2)
-                        , RS.getString(3)
-                        , RS.getString(4)
-                        , RS.getString(5)
-                        , RS.getString(6)
-                        , RS.getString(7)
-                        , RS.getString(8)
-                        , RS.getString(9)
-                        , RS.getString(10) });
+            
+          switch (RS.getString("ATTRIBUTE")){
+              case "CLASS": {
+                    switch(RS.getString("DAY")){
+                      case "Saturday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":  TM.setValueAt((Object)S, 0, 1);
+                                           break;
+                                  case "9:15 AM":  TM.setValueAt((Object)S, 0, 2);
+                                           break;
+                                  case "10:30 AM":  TM.setValueAt((Object)S, 0, 3);
+                                           break;
+                                  case "11:45 AM":  TM.setValueAt((Object)S, 0, 4);
+                                           break;
+                                  case "1:00 PM":  TM.setValueAt((Object)S, 0, 5);
+                                           break;
+                                  case "2:15 PM":  TM.setValueAt((Object)S, 0, 6);
+                                           break;
+                                  case "3:30 PM":  TM.setValueAt((Object)S, 0, 7);
+                                           break;
+                                  case "4:45 PM":  TM.setValueAt((Object)S, 0, 8);
+                                           break;
+
+                                      }
+
+                              }
+                              break;
+                      case "Sunday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":  TM.setValueAt((Object)S, 1, 1);
+                                           break;
+                                  case "9:15 AM":  TM.setValueAt((Object)S, 1, 2);
+                                           break;
+                                  case "10:30 AM":  TM.setValueAt((Object)S, 1, 3);
+                                           break;
+                                  case "11:45 AM":  TM.setValueAt((Object)S, 1, 4);
+                                           break;
+                                  case "1:00 PM":  TM.setValueAt((Object)S, 1, 5);
+                                           break;
+                                  case "2:15 PM":  TM.setValueAt((Object)S, 1, 6);
+                                           break;
+                                  case "3:30 PM":  TM.setValueAt((Object)S, 1, 7);
+                                           break;
+                                  case "4:45 PM":  TM.setValueAt((Object)S, 1, 8);
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+                      case "Monday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":  TM.setValueAt((Object)S, 2, 1);
+                                           break;
+                                  case "9:15 AM":  TM.setValueAt((Object)S, 2, 2);
+                                           break;
+                                  case "10:30 AM":  TM.setValueAt((Object)S, 2, 3);
+                                           break;
+                                  case "11:45 AM":  TM.setValueAt((Object)S, 2, 4);
+                                           break;
+                                  case "1:00 PM":  TM.setValueAt((Object)S, 2, 5);
+                                           break;
+                                  case "2:15 PM":  TM.setValueAt((Object)S, 2, 6);
+                                           break;
+                                  case "3:30 PM":  TM.setValueAt((Object)S, 2, 7);
+                                           break;
+                                  case "4:45 PM":  TM.setValueAt((Object)S, 2, 8);
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+
+                      case "Tuesday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":  TM.setValueAt((Object)S, 3, 1);
+                                           break;
+                                  case "9:15 AM":  TM.setValueAt((Object)S, 3, 2);
+                                           break;
+                                  case "10:30 AM":  TM.setValueAt((Object)S, 3, 3);
+                                           break;
+                                  case "11:45 AM":  TM.setValueAt((Object)S, 3, 4);
+                                           break;
+                                  case "1:00 PM":  TM.setValueAt((Object)S, 3, 5);
+                                           break;
+                                  case "2:15 PM":  TM.setValueAt((Object)S, 3, 6);
+                                           break;
+                                  case "3:30 PM":  TM.setValueAt((Object)S, 3, 7);
+                                           break;
+                                  case "4:45 PM":  TM.setValueAt((Object)S, 3, 8);
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+
+                      case "Wednesday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":  TM.setValueAt((Object)S, 4, 1);
+                                           break;
+                                  case "9:15 AM":  TM.setValueAt((Object)S, 4, 2);
+                                           break;
+                                  case "10:30 AM":  TM.setValueAt((Object)S, 4, 3);
+                                           break;
+                                  case "11:45 AM":  TM.setValueAt((Object)S, 4, 4);
+                                           break;
+                                  case "1:00 PM":  TM.setValueAt((Object)S, 4, 5);
+                                           break;
+                                  case "2:15 PM":  TM.setValueAt((Object)S, 4, 6);
+                                           break;
+                                  case "3:30 PM":  TM.setValueAt((Object)S, 4, 7);
+                                           break;
+                                  case "4:45 PM":  TM.setValueAt((Object)S, 4, 8);
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+
+                      case "Thursday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":  TM.setValueAt((Object)S, 5, 1);
+                                           break;
+                                  case "9:15 AM":  TM.setValueAt((Object)S, 5, 2);
+                                           break;
+                                  case "10:30 AM":  TM.setValueAt((Object)S, 5, 3);
+                                           break;
+                                  case "11:45 AM":  TM.setValueAt((Object)S, 5, 4);
+                                           break;
+                                  case "1:00 PM":  TM.setValueAt((Object)S, 5, 5);
+                                           break;
+                                  case "2:15 PM":  TM.setValueAt((Object)S, 5, 6);
+                                           break;
+                                  case "3:30 PM":  TM.setValueAt((Object)S, 5, 7);
+                                           break;
+                                  case "4:45 PM":  TM.setValueAt((Object)S, 5, 8);
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+
+                          }
+              }
+              break;
+              case "LAB":{
+                                      switch(RS.getString("DAY")){
+                      case "Saturday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                    case "8:00 AM":     {
+                                    TM.setValueAt((Object)S, 0, 1);
+                                    TM.setValueAt("<<<<<<<<<|", 0, 2);
+                                    }
+                             break;
+                    case "10:30 AM":     {
+                                    TM.setValueAt((Object)S, 0, 3);
+                                    TM.setValueAt("<<<<<<<<<|", 0, 4);
+                                    }
+                             break;
+                    case "1:00 PM":     {
+                                    TM.setValueAt((Object)S, 0, 5);
+                                    TM.setValueAt("<<<<<<<<<|", 0, 6);
+                                    }
+                             break;
+                    case "3:30 PM":     {
+                                    TM.setValueAt((Object)S, 0, 7);
+                                    TM.setValueAt("", 0, 8);
+                                    }
+                             break;
+
+
+                                      }
+
+                              }
+                              break;
+                      case "Sunday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":     {
+                                                  TM.setValueAt((Object)S, 1, 1);
+                                                  TM.setValueAt("<<<<<<<<<|", 1, 2);
+                                                  }
+                                           break;
+                                  case "10:30 AM":     {
+                                                  TM.setValueAt((Object)S, 1, 3);
+                                                  TM.setValueAt("<<<<<<<<<|", 1, 4);
+                                                  }
+                                           break;
+                                  case "1:00 PM":     {
+                                                  TM.setValueAt((Object)S, 1, 5);
+                                                  TM.setValueAt("<<<<<<<<<|", 1, 6);
+                                                  }
+                                           break;
+                                  case "3:30 PM":     {
+                                                  TM.setValueAt((Object)S, 1, 7);
+                                                  TM.setValueAt("<<<<<<<<<|", 1, 8);
+                                                  }
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+                      case "Monday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":     {
+                                                  TM.setValueAt((Object)S, 2, 1);
+                                                  TM.setValueAt("<<<<<<<<<|", 2, 2);
+
+                                                  }
+                                           break;
+                                  case "10:30 AM":     {
+                                                  TM.setValueAt((Object)S, 2, 3);
+                                                  TM.setValueAt("<<<<<<<<<|", 2, 4);
+                                                  }
+                                           break;
+                                  case "1:00 PM":     {
+                                                  TM.setValueAt((Object)S, 2, 5);
+                                                  TM.setValueAt("<<<<<<<<<|", 2, 6);
+                                                  }
+                                           break;
+                                  case "3:30 PM":     {
+                                                  TM.setValueAt((Object)S, 2, 7);
+                                                  TM.setValueAt("<<<<<<<<<|", 2, 8);
+                                                  }
+                                           break;
+
+                                  
+                                      }
+                              }
+                              break;
+
+                      case "Tuesday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":     {
+                                                  TM.setValueAt((Object)S, 3, 1);
+                                                  TM.setValueAt("<<<<<<<<<|", 3, 2);
+                                                  }
+                                           break;
+                                  case "10:30 AM":     {
+                                                  TM.setValueAt((Object)S, 3, 3);
+                                                  TM.setValueAt("<<<<<<<<<|", 3, 4);
+                                                  }
+                                           break;
+                                  case "1:00 PM":     {
+                                                  TM.setValueAt((Object)S, 3, 5);
+                                                  TM.setValueAt("<<<<<<<<<|", 3, 6);
+                                                  }
+                                           break;
+                                  case "3:30 PM":     {
+                                                  TM.setValueAt((Object)S, 3, 7);
+                                                  TM.setValueAt("<<<<<<<<<|", 3, 8);
+                                                  }
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+
+                      case "Wednesday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+                                  case "8:00 AM":     {
+                                                  TM.setValueAt((Object)S, 4, 1);
+                                                  TM.setValueAt("<<<<<<<<<|", 4, 2);
+                                                  }
+                                           break;
+                                  case "10:30 AM":     {
+                                                  TM.setValueAt((Object)S, 4, 3);
+                                                  TM.setValueAt("<<<<<<<<<|", 4, 4);
+                                                  }
+                                           break;
+                                  case "1:00 PM":     {
+                                                  TM.setValueAt((Object)S, 4, 5);
+                                                  TM.setValueAt("<<<<<<<<<|", 4, 6);
+                                                  }
+                                           break;
+                                  case "3:30 PM":     {
+                                                  TM.setValueAt((Object)S, 4, 7);
+                                                  TM.setValueAt("<<<<<<<<<|", 4, 8);
+                                                  }
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+
+                      case "Thursday":{
+                                      String S = "<html>"+
+                                              RS.getString("COURSE_CODE")+"<br>"+
+                                              RS.getString("COURSE_SHORT")+"<br>"+
+                                         "B:"+RS.getString("BATCH")+"<br>"+
+                                         "R:"+RS.getString("ROOM_NO")+"<br>";
+
+                                      switch (RS.getString("START_TIME")) {
+case "8:00 AM":     {
+                                                  TM.setValueAt((Object)S, 5, 1);
+                                                  TM.setValueAt("<<<<<<<<<|", 5, 2);
+                                                  }
+                                           break;
+                                  case "10:30 AM":     {
+                                                  TM.setValueAt((Object)S, 5, 3);
+                                                  TM.setValueAt("<<<<<<<<<|", 5, 4);
+                                                  }
+                                           break;
+                                  case "1:00 PM":     {
+                                                  TM.setValueAt((Object)S, 5, 5);
+                                                  TM.setValueAt("<<<<<<<<<|", 5, 6);
+                                                  }
+                                           break;
+                                  case "3:30 PM":     {
+                                                  TM.setValueAt((Object)S, 5, 7);
+                                                  TM.setValueAt("<<<<<<<<<|", 5, 8);
+                                                  }
+                                           break;
+                                  
+                                      }
+                              }
+                              break;
+
+                          }
+              }
+              break;
+              
+          }
+
  }
         
         }
@@ -155,6 +561,11 @@ public class Access_2 extends javax.swing.JFrame {
         });
 
         ExportBatch.setText("Export");
+        ExportBatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportBatchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,7 +589,7 @@ public class Access_2 extends javax.swing.JFrame {
                     .addComponent(BatchList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ExportBatch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Batch", jPanel2);
@@ -193,6 +604,11 @@ public class Access_2 extends javax.swing.JFrame {
         });
 
         ExportFaculty.setText("Export");
+        ExportFaculty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportFacultyActionPerformed(evt);
+            }
+        });
 
         FacultyRoutine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,7 +642,7 @@ public class Access_2 extends javax.swing.JFrame {
                     .addComponent(FacultyList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ExportFaculty))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Faculty", jPanel3);
@@ -274,7 +690,7 @@ public class Access_2 extends javax.swing.JFrame {
                     .addComponent(DayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ExportBatch1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Day Summary", jPanel4);
@@ -323,6 +739,31 @@ public class Access_2 extends javax.swing.JFrame {
        tabInit(FacultyList.getSelectedItem().toString(),"Faculty");
     }//GEN-LAST:event_FacultyListActionPerformed
 
+    private void ExportBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportBatchActionPerformed
+        // TODO add your handling code here:
+        String CTime = new SimpleDateFormat("     dd.MM.yyyy"/*   hh.mm"*/).format(new Date());
+        try{
+            PDFV1 P = new PDFV1();
+            P.BatchPDF("CSE-S-"+BatchList.getSelectedItem().toString()+"  "+CTime,BatchList.getSelectedItem().toString());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+ 
+    }//GEN-LAST:event_ExportBatchActionPerformed
+
+    private void ExportFacultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportFacultyActionPerformed
+        // TODO add your handling code here:
+                String CTime = new SimpleDateFormat("      dd.MM.yyyy"/*   hh.mm"*/).format(new Date());
+        try{
+            PDFV1 P = new PDFV1();
+            P.FacultyPDF("Name of the Faculty Member - "+FacultyList.getSelectedItem().toString()+"  "+CTime,FacultyList.getSelectedItem().toString());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_ExportFacultyActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -350,11 +791,17 @@ public class Access_2 extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Access_2("Test.accdb").setVisible(true);
+                new Access_2().setVisible(true);
             }
         });
     }

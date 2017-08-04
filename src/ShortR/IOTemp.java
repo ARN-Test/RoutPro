@@ -15,6 +15,23 @@ import javax.swing.table.TableModel;
  */
 public class IOTemp {
     
+    
+    ///////table.getModel().getValueAt(row_index, col_index);
+    
+    
+    /////////jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+//////////////    @Override
+//////////////    public void mouseClicked(java.awt.event.MouseEvent evt) {
+//////////////        int row = jTable1.rowAtPoint(evt.getPoint());
+//////////////        int col = jTable1.columnAtPoint(evt.getPoint());
+//////////////        if (row >= 0 && col >= 0) {
+//////////////            ......
+//////////////
+//////////////        }
+//////////////    }
+//////////////});
+    
+    
     //Database db = DatabaseBuilder.create(FileFormat.V2010, new File(dbPath))
     //String dbPath = "C:/Users/Public/newDb.accdb";
     

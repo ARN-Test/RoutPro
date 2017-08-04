@@ -52,3 +52,25 @@ class SimpleTable {
     }
  
 }
+
+
+
+////////////        C.add(I);
+////////////        //IDoc.add(I);
+////////////        
+////////////        Paragraph P;
+////////////        
+////////////        P = new Paragraph("Stamford University Bangladesh", new Font(FontFamily.TIMES_ROMAN, 18, Font.BOLD));
+////////////        P.setSpacingAfter(5f);
+////////////        P.setAlignment(Element.ALIGN_CENTER);
+////////////        C.add(P);
+////////////        
+////////////        P = new Paragraph("Department of Computer Science and Engineering", new Font(FontFamily.TIMES_ROMAN, 14, Font.BOLD));
+////////////        P.setSpacingAfter(5f);
+////////////        P.setAlignment(Element.ALIGN_CENTER);
+////////////        C.add(P);
+////////////        
+////////////        P = new Paragraph(FileName, new Font(FontFamily.TIMES_ROMAN, 14, Font.BOLD));
+////////////        P.setSpacingAfter(25f);
+////////////        P.setAlignment(Element.ALIGN_CENTER);
+////////////        C.add(P);  

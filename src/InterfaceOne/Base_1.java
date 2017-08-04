@@ -1,6 +1,8 @@
 package InterfaceOne;
 
+import AccessPackage.AConnect;
 import java.io.File;
+import java.sql.Connection;
 import java.util.Date;
 
 /**
@@ -9,6 +11,8 @@ import java.util.Date;
  */
 public class Base_1 extends javax.swing.JFrame {
 
+    public static Connection ACON_2; //For Connection in all Pages
+    public static String EName;//Trimister across Pro
 
     File DIRECTORY;
     File[] FILES;
@@ -219,8 +223,10 @@ public class Base_1 extends javax.swing.JFrame {
 
     private void DatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DatabaseActionPerformed
         // TODO add your handling code here:
-        Access_2 A_2 = new Access_2(FileList.getSelectedItem().toString());
-        A_2.setVisible(true);
+        ACON_2 = AConnect.ConnectDB(FileList.getSelectedItem().toString());
+        EName = FileList.getSelectedItem().toString();
+        Access_2 A_21 = new Access_2();
+        A_21.setVisible(true);
         //this.dispose();
     }//GEN-LAST:event_DatabaseActionPerformed
 
